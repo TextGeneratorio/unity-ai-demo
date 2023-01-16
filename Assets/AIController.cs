@@ -8,41 +8,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-/*
- * A Text Generation hub Embedding
-Python
-Language
-import requests
-
-headers = {"secret": ""}
-
-data = {
-    "text": "The battle between the elves and goblins has begun,",
-    "number_of_results": 1,
-    "max_length": 100,
-    "max_sentences": 4,
-    "min_probability": 0,
-    "stop_sequences": [],
-    "top_p": 0.9,
-    "top_k": 40,
-    "temperature": 0.7,
-    "repetition_penalty": 1.17,
-    "seed": 0
-}
-
-response = requests.post(
-   "https://api.text-generator.io/api/v1/generate",
-   json=data,
-   headers=headers
-)
-
-json_response = response.json()
-
-for generation in json_response:
-    generated_text = generation["generated_text"][len(data['text']):]
-    print(generated_text)
-Close
- */
 public class AIController : MonoBehaviour
 {
     public TMP_InputField input;
