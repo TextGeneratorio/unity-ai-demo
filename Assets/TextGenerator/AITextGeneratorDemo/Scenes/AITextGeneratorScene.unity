@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 412548221}
   - component: {fileID: 412548220}
   m_Layer: 5
-  m_Name: textLabel
+  m_Name: TextLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 692128209}
   - component: {fileID: 692128208}
   m_Layer: 5
-  m_Name: textLabel (1)
+  m_Name: ApiKeyLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1279,7 +1279,7 @@ GameObject:
   - component: {fileID: 1255475587}
   - component: {fileID: 1255475586}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: PromptInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1610,7 +1610,7 @@ GameObject:
   - component: {fileID: 1380500706}
   - component: {fileID: 1380500705}
   m_Layer: 5
-  m_Name: textLabel (2)
+  m_Name: ResultsLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2677,7 +2677,7 @@ GameObject:
   - component: {fileID: 1964956842}
   - component: {fileID: 1964956841}
   m_Layer: 5
-  m_Name: heading
+  m_Name: Heading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2812,7 +2812,7 @@ GameObject:
   - component: {fileID: 2063573033}
   - component: {fileID: 2063573032}
   m_Layer: 5
-  m_Name: resultsText
+  m_Name: ResultsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
