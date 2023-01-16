@@ -43,27 +43,33 @@ for generation in json_response:
     print(generated_text)
 Close
  */
-public class AIController: MonoBehaviour
+public class AIController : MonoBehaviour
 {
     public TMP_InputField input;
     public TMP_InputField secret;
     public Button submitButton;
     public TMP_Text output;
-    
+
     void Start()
     {
         submitButton.onClick.AddListener(SubmitForm);
     }
-    
+
     public void SubmitForm()
     {
         string textInput = input.text;
         string secretInput = secret.text;
+        string generatedText = RequestTextGeneration(textInput, secretInput);
+        output.text = generatedText;
+    }
+
+    private string RequestTextGeneration(string textInput, string secretInput)
+    {
         Debug.Log("Form submitted");
         string url = "https://api.text-generator.io/api/v1/generate";
         // post json
 
-        Dictionary<string, string> json = new Dictionary<string, string>(); 
+        Dictionary<string, string> json = new Dictionary<string, string>();
         json.Add("text", textInput);
         json.Add("number_of_results", "1");
         json.Add("max_length", "100");
@@ -82,7 +88,8 @@ public class AIController: MonoBehaviour
         {
             // Debug.Log("Waiting for response");
         }
-        if( www.result is UnityWebRequest.Result.ConnectionError or UnityWebRequest.Result.ProtocolError )
+
+        if (www.result is UnityWebRequest.Result.ConnectionError or UnityWebRequest.Result.ProtocolError)
         {
             Debug.Log(www.error);
             Debug.Log(www.downloadHandler.text);
@@ -96,12 +103,15 @@ public class AIController: MonoBehaviour
             // parse json to list of JSONTextGeneratorResponse objects
             JsonReader jr = new JsonTextReader(new StringReader(jsonText));
             JsonSerializer serializer = new JsonSerializer();
-            List<JSONTextGeneratorResponseItem> response = serializer.Deserialize<List<JSONTextGeneratorResponseItem>>(jr);
+            List<JSONTextGeneratorResponseItem> response =
+                serializer.Deserialize<List<JSONTextGeneratorResponseItem>>(jr);
             // get generated text 
-            string generatedText = response[0].generated_text;
-            output.text = generatedText;
+            return response[0].generated_text;
         }
+
+        return "";
     }
+
     public string DictToJSON(Dictionary<string, string> dict)
     {
         string json = "{";
@@ -109,23 +119,23 @@ public class AIController: MonoBehaviour
         {
             string value = entry.Value.Replace("\u000b", "\\n").Replace(@"
 ", "\\n");
-            
+
             json += "\"" + entry.Key + "\":\"" + value + "\",";
         }
+
         json = json.Substring(0, json.Length - 1);
         json += "}";
         return json;
     }
-    
+
     public UnityWebRequest Post(string url, Dictionary<string, string> form)
     {
-        
         UnityWebRequest www = new UnityWebRequest(url, "POST");
         www.downloadHandler = new DownloadHandlerBuffer();
         string json = DictToJSON(form);
         Debug.Log(json);
         www.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(json));
-        
+
         www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("Accept", "application/json");
         return www;
